@@ -121,17 +121,13 @@ public class TaskManager {
         checkEpicStatus(epic);
     }
 
-    public void deleteSubtaskID() {
+    public void deleteAllSubtask() {
         ArrayList<Integer> deleteEpicsIdList = new ArrayList<>(epics.keySet());
+        subtasks.clear();
         for (Integer deleteId : deleteEpicsIdList) {
             Epic epic = getEpicByID(deleteId);
             epic.clearSubtaskIDs();
         }
-
-    }
-    public void deleteAllSubtask() {
-        subtasks.clear();
-        deleteSubtaskID();
     }
 
     public ArrayList<Subtask> getSubtaskListByEpicID (Epic epic) {
