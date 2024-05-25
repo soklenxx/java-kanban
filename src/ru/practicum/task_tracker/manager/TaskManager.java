@@ -140,7 +140,7 @@ public class TaskManager {
     }
 
 
-    public void checkEpicStatus (Epic epic) {
+    private void checkEpicStatus (Epic epic) {
         if (epics.containsKey(epic.getUniqueID())) {
             if (epic.getSubtasksID().size() == 0) {
                 epic.setStatus(TaskState.NEW);
