@@ -15,12 +15,8 @@ public class TaskManager {
     private final HashMap<Integer, Epic> epics = new HashMap<>();
     private final HashMap<Integer, Subtask> subtasks = new HashMap<>();
 
-    private int getGeneratorId() {
-        return generatorId++;
-    }
-
     public Task createTask(Task task) {
-        task.setUniqueID(getGeneratorId());
+        task.setUniqueID(getNewId());
         tasks.put(task.getUniqueID(), task);
         return task;
     }
@@ -51,7 +47,7 @@ public class TaskManager {
     }
 
     public Epic createEpic(Epic epic) {
-        epic.setUniqueID(getGeneratorId());
+        epic.setUniqueID(getNewId());
         epics.put(epic.getUniqueID(), epic);
         return epic;
     }
@@ -87,7 +83,7 @@ public class TaskManager {
     }
 
     public Subtask createSubtask(Subtask subtask) {
-        subtask.setUniqueID(getGeneratorId());
+        subtask.setUniqueID(getNewId());
         subtasks.put(subtask.getUniqueID(), subtask);
         Epic epic = epics.get(subtask.getEpicID());
         if (epic != null) {
@@ -171,5 +167,9 @@ public class TaskManager {
             }
         }
 
+    }
+
+    private int getNewId() {
+        return generatorId++;
     }
 }
