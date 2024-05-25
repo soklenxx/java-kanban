@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Epic extends Task {
     private ArrayList<Integer> subtasksIDs = new ArrayList<>();
 
-    public Epic(String name, String description, StateTask status) {
+    public Epic(String name, String description, TaskState status) {
         super(name, description, status);
     }
 
-    public Epic(Integer uniqueID, String name, String description, StateTask status) {
+    public Epic(Integer uniqueID, String name, String description, TaskState status) {
         super(uniqueID, name, description, status);
     }
 

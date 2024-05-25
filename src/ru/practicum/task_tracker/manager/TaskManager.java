@@ -1,7 +1,7 @@
 package ru.practicum.task_tracker.manager;
 
 import ru.practicum.task_tracker.task.Epic;
-import ru.practicum.task_tracker.task.StateTask;
+import ru.practicum.task_tracker.task.TaskState;
 import ru.practicum.task_tracker.task.Subtask;
 import ru.practicum.task_tracker.task.Task;
 
@@ -147,26 +147,26 @@ public class TaskManager {
     public void checkEpicStatus (Epic epic) {
         if (epics.containsKey(epic.getUniqueID())) {
             if (epic.getSubtasksID().size() == 0) {
-                epic.setStatus(StateTask.NEW);
+                epic.setStatus(TaskState.NEW);
             } else {
                 int countDone = 0;
                 int countNew = 0;
 
                 for (Integer subtask: epic.getSubtasksID()) {
-                    if (subtasks.get(subtask).getStatus() == StateTask.DONE) {
+                    if (subtasks.get(subtask).getStatus() == TaskState.DONE) {
                         countDone++;
                     }
-                    if (subtasks.get(subtask).getStatus() == StateTask.NEW) {
+                    if (subtasks.get(subtask).getStatus() == TaskState.NEW) {
                         countNew++;
                     }
                 }
 
                 if (countNew == epic.getSubtasksID().size()) {
-                    epic.setStatus(StateTask.NEW);
+                    epic.setStatus(TaskState.NEW);
                 } else if (countDone == epic.getSubtasksID().size()) {
-                    epic.setStatus(StateTask.DONE);
+                    epic.setStatus(TaskState.DONE);
                 } else {
-                    epic.setStatus(StateTask.IN_PROGRESS);
+                    epic.setStatus(TaskState.IN_PROGRESS);
                 }
             }
         }

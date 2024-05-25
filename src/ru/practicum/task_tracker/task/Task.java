@@ -5,16 +5,16 @@ public class Task {
     private Integer uniqueID;
     private String name;
     private String description;
-    private StateTask status;
+    private TaskState status;
 
 
-    public Task(String name, String description, StateTask status) {
+    public Task(String name, String description, TaskState status) {
         this.name = name;
         this.description = description;
         this.status = status;
     }
 
-    public Task(Integer uniqueID, String name, String description, StateTask status) {
+    public Task(Integer uniqueID, String name, String description, TaskState status) {
         this.uniqueID = uniqueID;
         this.name = name;
         this.description = description;
@@ -37,11 +37,11 @@ public class Task {
         this.uniqueID = uniqueID;
     }
 
-    public StateTask getStatus() {
+    public TaskState getStatus() {
         return status;
     }
 
-    public void setStatus(StateTask status) {
+    public void setStatus(TaskState status) {
         this.status = status;
     }
 
