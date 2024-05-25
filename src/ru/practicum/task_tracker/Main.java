@@ -76,7 +76,7 @@ public class Main {
         System.out.println(taskManager.getSubtaskByID(subtask4.getUniqueID()));
 
 //      Получение списка подзадач епика
-        ArrayList<Subtask> subtasksByEpic = taskManager.getSubtaskListByEpicID(epic1);
+        ArrayList<Subtask> subtasksByEpic = taskManager.getSubtaskListByEpic(epic1);
         System.out.println(subtasksByEpic);
 
 //      Удаление всех задач

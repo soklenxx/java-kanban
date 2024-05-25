@@ -130,7 +130,7 @@ public class TaskManager {
         }
     }
 
-    public ArrayList<Subtask> getSubtaskListByEpicID (Epic epic) {
+    public ArrayList<Subtask> getSubtaskListByEpic(Epic epic) {
         ArrayList<Subtask> subtasks = new ArrayList<>();
         ArrayList<Integer> subtasksIDs = epic.getSubtasksID();
         for (Integer id: subtasksIDs) {
