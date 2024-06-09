@@ -59,7 +59,7 @@ public class Task {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Task task)) return false;
-        return Objects.equals(getUniqueID(), task.getUniqueID()) && Objects.equals(getName(), task.getName()) && Objects.equals(getDescription(), task.getDescription()) && getStatus() == task.getStatus();
+        return Objects.equals(getUniqueID(), task.getUniqueID());
     }
 
     @Override
