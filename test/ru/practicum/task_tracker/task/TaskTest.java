@@ -28,8 +28,6 @@ class TaskTest {
         taskManager.createTask(task1);
         Task task3 = new Task(task1.getUniqueID(), "Задача 2", "Description 2-2", TaskState.IN_PROGRESS);
         taskManager.updateTask(task3);
-        System.out.println(task1);
-        System.out.println(task3);
         assertEquals("Description 2-2", taskManager.getTaskByID(0).getDescription());
     }
 
