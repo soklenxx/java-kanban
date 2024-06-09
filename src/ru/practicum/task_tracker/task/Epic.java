@@ -1,6 +1,7 @@
 package ru.practicum.task_tracker.task;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Epic extends Task {
     private ArrayList<Integer> subtasksIDs = new ArrayList<>();
@@ -23,6 +24,14 @@ public class Epic extends Task {
 
     public void clearSubtaskIDs() {
         subtasksIDs.clear();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Epic epic)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(getUniqueID(), epic.getUniqueID());
     }
 
     @Override
