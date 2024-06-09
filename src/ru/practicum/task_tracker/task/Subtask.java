@@ -1,6 +1,8 @@
 package ru.practicum.task_tracker.task;
 
 
+import java.util.Objects;
+
 public class Subtask extends Task {
     private Integer epicID;
 
@@ -27,5 +29,13 @@ public class Subtask extends Task {
                 ", status=" + getStatus() +
                 ", epicID=" + epicID +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Subtask subtask)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(getUniqueID(), subtask.getUniqueID());
     }
 }
