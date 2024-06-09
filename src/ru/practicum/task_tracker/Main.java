@@ -1,4 +1,6 @@
 package ru.practicum.task_tracker;
+import ru.practicum.task_tracker.manager.HistoryManager;
+import ru.practicum.task_tracker.manager.InMemoryTaskManager;
 import ru.practicum.task_tracker.manager.TaskManager;
 import ru.practicum.task_tracker.task.Epic;
 import ru.practicum.task_tracker.task.TaskState;
@@ -16,7 +18,7 @@ public class Main {
     }
 
     private static void testTasks() {
-        TaskManager taskManager = new TaskManager();
+        TaskManager taskManager = Managers.getDefault();
 
         List<Task> tasks = taskManager.getTasks();
         System.out.println(tasks.isEmpty());
@@ -88,6 +90,22 @@ public class Main {
         System.out.println(taskManager.getSubtasks());
         System.out.println(taskManager.getEpics());
         System.out.println(taskManager.getTasks());
+        taskManager.getEpicByID(epic2.getUniqueID());
+        taskManager.getEpicByID(epic1.getUniqueID());
+        taskManager.getTaskByID(task2.getUniqueID());
+        taskManager.getTaskByID(task1.getUniqueID());
+        taskManager.getTaskByID(task2.getUniqueID());
+        taskManager.getEpicByID(epic2.getUniqueID());
+        taskManager.getEpicByID(epic1.getUniqueID());
+        taskManager.getTaskByID(task2.getUniqueID());
+        taskManager.getTaskByID(task1.getUniqueID());
+        taskManager.getTaskByID(task2.getUniqueID());
+        taskManager.getTaskByID(task2.getUniqueID());
+        taskManager.getSubtaskByID(subtask1.getUniqueID());
+        ArrayList<Task> h = taskManager.getHistory();
+
+        System.out.println(h);
+
 
 
 
