@@ -1,9 +1,9 @@
-package ru.practicum.task_tracker.task;
+package ru.practicum.tracker.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import ru.practicum.task_tracker.Managers;
-import ru.practicum.task_tracker.manager.TaskManager;
+import ru.practicum.tracker.Managers;
+import ru.practicum.tracker.manager.TaskManager;
 
 class EpicTest {
     Epic epic1;

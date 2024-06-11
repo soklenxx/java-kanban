@@ -1,9 +1,9 @@
-package ru.practicum.task_tracker;
-import ru.practicum.task_tracker.manager.TaskManager;
-import ru.practicum.task_tracker.task.Epic;
-import ru.practicum.task_tracker.task.TaskState;
-import ru.practicum.task_tracker.task.Subtask;
-import ru.practicum.task_tracker.task.Task;
+package ru.practicum.tracker;
+import ru.practicum.tracker.manager.TaskManager;
+import ru.practicum.tracker.task.Epic;
+import ru.practicum.tracker.task.TaskState;
+import ru.practicum.tracker.task.Subtask;
+import ru.practicum.tracker.task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +100,7 @@ public class Main {
         taskManager.getTaskByID(task2.getUniqueID());
         taskManager.getTaskByID(task2.getUniqueID());
         taskManager.getSubtaskByID(subtask1.getUniqueID());
-        ArrayList<Task> h = taskManager.getHistory();
+        List<Task> h = taskManager.getHistory();
 
         System.out.println(h);
 

@@ -1,10 +1,10 @@
-package ru.practicum.task_tracker.manager;
+package ru.practicum.tracker.manager;
 
-import ru.practicum.task_tracker.Managers;
-import ru.practicum.task_tracker.task.Epic;
-import ru.practicum.task_tracker.task.TaskState;
-import ru.practicum.task_tracker.task.Subtask;
-import ru.practicum.task_tracker.task.Task;
+import ru.practicum.tracker.Managers;
+import ru.practicum.tracker.task.Epic;
+import ru.practicum.tracker.task.TaskState;
+import ru.practicum.tracker.task.Subtask;
+import ru.practicum.tracker.task.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -162,11 +162,11 @@ public class InMemoryTaskManager implements TaskManager {
         }
         return subtasks;
     }
+
     @Override
-    public ArrayList<Task> getHistory() {
+    public List<Task> getHistory() {
         return historyManager.getHistory();
     }
-
 
     private void checkEpicStatus (Epic epic) {
         if (epics.containsKey(epic.getUniqueID())) {

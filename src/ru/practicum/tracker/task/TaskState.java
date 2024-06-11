@@ -1,4 +1,4 @@
-package ru.practicum.task_tracker.task;
+package ru.practicum.tracker.task;
 
 public enum TaskState {
     NEW,

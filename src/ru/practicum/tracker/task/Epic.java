@@ -1,4 +1,4 @@
-package ru.practicum.task_tracker.task;
+package ru.practicum.tracker.task;
 
 import java.util.ArrayList;
 import java.util.Objects;

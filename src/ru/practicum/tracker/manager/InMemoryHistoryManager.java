@@ -1,11 +1,12 @@
-package ru.practicum.task_tracker.manager;
+package ru.practicum.tracker.manager;
 
-import ru.practicum.task_tracker.task.Task;
+import ru.practicum.tracker.task.Task;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class InMemoryHistoryManager implements HistoryManager {
-    private final ArrayList<Task> historyList = new ArrayList<>();
+    private final List<Task> historyList = new ArrayList<>();
 
     @Override
     public void add(Task task) {
@@ -18,7 +19,7 @@ public class InMemoryHistoryManager implements HistoryManager {
     }
 
     @Override
-    public ArrayList<Task> getHistory() {
+    public List<Task> getHistory() {
         return historyList;
     }
 }

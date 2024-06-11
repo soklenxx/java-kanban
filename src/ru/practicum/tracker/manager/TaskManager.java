@@ -1,8 +1,8 @@
-package ru.practicum.task_tracker.manager;
+package ru.practicum.tracker.manager;
 
-import ru.practicum.task_tracker.task.Epic;
-import ru.practicum.task_tracker.task.Subtask;
-import ru.practicum.task_tracker.task.Task;
+import ru.practicum.tracker.task.Epic;
+import ru.practicum.tracker.task.Subtask;
+import ru.practicum.tracker.task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public interface TaskManager {
 
     void deleteAllSubtask();
 
-    ArrayList<Task> getHistory();
+    List<Task> getHistory();
 
     ArrayList<Subtask> getSubtaskListByEpic(Epic epic);
 }

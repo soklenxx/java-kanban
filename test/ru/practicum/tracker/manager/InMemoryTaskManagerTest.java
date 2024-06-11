@@ -1,12 +1,12 @@
-package ru.practicum.task_tracker.manager;
+package ru.practicum.tracker.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.practicum.task_tracker.Managers;
-import ru.practicum.task_tracker.task.Epic;
-import ru.practicum.task_tracker.task.Subtask;
-import ru.practicum.task_tracker.task.Task;
-import ru.practicum.task_tracker.task.TaskState;
+import ru.practicum.tracker.Managers;
+import ru.practicum.tracker.task.Epic;
+import ru.practicum.tracker.task.Subtask;
+import ru.practicum.tracker.task.Task;
+import ru.practicum.tracker.task.TaskState;
 
 import static org.junit.jupiter.api.Assertions.*;
 
