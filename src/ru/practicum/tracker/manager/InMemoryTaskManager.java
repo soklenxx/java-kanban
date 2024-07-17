@@ -168,7 +168,7 @@ public class InMemoryTaskManager implements TaskManager {
         return historyManager.getHistory();
     }
 
-    private void checkEpicStatus (Epic epic) {
+    private void checkEpicStatus(Epic epic) {
         if (epics.containsKey(epic.getUniqueID())) {
             if (epic.getSubtasksID().size() == 0) {
                 epic.setStatus(TaskState.NEW);
