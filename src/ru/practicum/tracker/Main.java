@@ -1,5 +1,4 @@
 package ru.practicum.tracker;
-import ru.practicum.tracker.manager.InMemoryHistoryManager;
 import ru.practicum.tracker.manager.TaskManager;
 import ru.practicum.tracker.task.Epic;
 import ru.practicum.tracker.task.TaskState;
@@ -8,7 +7,6 @@ import ru.practicum.tracker.task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Main {
 
