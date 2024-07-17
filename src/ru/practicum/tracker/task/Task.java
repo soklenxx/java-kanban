@@ -1,6 +1,7 @@
 package ru.practicum.tracker.task;
 
 import java.util.Objects;
+
 public class Task {
     private Integer uniqueID;
     private String name;
