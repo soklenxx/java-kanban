@@ -21,18 +21,20 @@ class InMemoryTaskManagerTest {
 
     @BeforeEach
     void beforeEach() {
-        task1 = new Task(0,"Задача 1", "Description 1", TaskState.NEW);
-        task2 = new Task(0,"Задача 3", "Description 3", TaskState.NEW);
+        task1 = new Task(0, "Задача 1", "Description 1", TaskState.NEW);
+        task2 = new Task(0, "Задача 3", "Description 3", TaskState.NEW);
 
-        epic1 = new Epic(3,"Эпик 1", "Description 1", TaskState.NEW);
-        epic2 = new Epic(3,"Эпик 3", "Description 3", TaskState.NEW);
+        epic1 = new Epic(3, "Эпик 1", "Description 1", TaskState.NEW);
+        epic2 = new Epic(3, "Эпик 3", "Description 3", TaskState.NEW);
 
-        subtask1 = new Subtask(0,"Сабтаск 1", "Description 3", TaskState.NEW, 3);
+        subtask1 = new Subtask(0, "Сабтаск 1", "Description 3", TaskState.NEW, 3);
     }
+
     @Test
     public void shouldReturnEqualsTasks() {
         assertEquals(task1, task2);
     }
+
     @Test
     public void shouldReturnEqualsEpics() {
         assertEquals(epic1, epic2);
@@ -43,15 +45,16 @@ class InMemoryTaskManagerTest {
         assertNotNull(taskManager);
         assertNotNull(historyManager);
     }
+
     @Test
     public void actuallyAddsTasksOfDifferentTypesInMemoryTaskManager() {
         TaskManager taskManagerExpected = Managers.getDefault();
-        task1 = new Task(1,"Задача 1", "Description 1", TaskState.NEW);
-        task2 = new Task(1,"Задача 3", "Description 3", TaskState.NEW);
-        epic1 = new Epic(3,"Эпик 1", "Description 1", TaskState.NEW);
-        epic2 = new Epic(3,"Эпик 3", "Description 3", TaskState.NEW);
+        task1 = new Task(1, "Задача 1", "Description 1", TaskState.NEW);
+        task2 = new Task(1, "Задача 3", "Description 3", TaskState.NEW);
+        epic1 = new Epic(3, "Эпик 1", "Description 1", TaskState.NEW);
+        epic2 = new Epic(3, "Эпик 3", "Description 3", TaskState.NEW);
 
-        subtask1 = new Subtask(0,"Сабтаск 1", "Description 3", TaskState.NEW, 3);
+        subtask1 = new Subtask(0, "Сабтаск 1", "Description 3", TaskState.NEW, 3);
 
         assertEquals(taskManagerExpected.getTasks(), taskManager.getTasks());
         assertEquals(taskManagerExpected.getSubtasks(), taskManager.getSubtasks());
@@ -69,13 +72,20 @@ class InMemoryTaskManagerTest {
     @Test
     public void taskRemainsUnchangedWhenAddingTaskToManager() {
         taskManager.createTask(task1);
-        assertEquals(taskManager.getTaskByID(0), new Task(0,"Задача 1", "Description 1", TaskState.NEW));
+        assertEquals(taskManager.getTaskByID(0), new Task(0, "Задача 1", "Description 1", TaskState.NEW));
     }
 
     @Test
     public void tasksAddedToHistoryManagerRetainThePreviousVersionOfTaskAndItsData() {
         taskManager.createTask(task1);
         taskManager.getTaskByID(0);
-        assertEquals(taskManager.getTasks(),taskManager.getHistory());
+        assertEquals(taskManager.getTasks(), taskManager.getHistory());
+    }
+
+    @Test
+    void getHistoryShouldBeOneTaskIfTwoIsSimilar() {
+        historyManager.add(task1);
+        historyManager.add(task1);
+        assertEquals(historyManager.getHistory().size(), 1);
     }
 }
