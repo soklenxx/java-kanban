@@ -52,54 +52,13 @@ public class Main {
         System.out.println(taskManager.getTasks());
         System.out.println();
 
-////      Обновление задач
-//        Task task3 = new Task(task1.getUniqueID(), "Задача 2", "Description 2-2", TaskState.IN_PROGRESS);
-//        Task task1Update = taskManager.updateTask(task3);
-//        System.out.println(task1Update);
-//
-//        Subtask subtask5 = new Subtask(subtask1.getUniqueID(), "Подзадача 2-2-2", "Description 2", TaskState.DONE, epic1.getUniqueID());
-//        Task subtask1Update = taskManager.updateSubtask(subtask5);
-//        System.out.println(subtask1Update);
-//
-//        System.out.println(taskManager.getSubtaskByID(subtask1.getUniqueID()));
-//
-//
-//        System.out.println(taskManager.getEpicByID(2));
-//        System.out.println();
-//        System.out.println(taskManager.getTaskByID(task1.getUniqueID()));
-
-//      Удаление задач
-//        taskManager.deleteTask(task1.getUniqueID());
-//        taskManager.deleteEpic(epic2.getUniqueID());
-//        System.out.println(taskManager.getEpicByID(epic2.getUniqueID()));
-//        System.out.println(taskManager.getTaskByID(task1.getUniqueID()));
-//        System.out.println(taskManager.getSubtaskByID(subtask4.getUniqueID()));
-
-//      Получение списка подзадач епика
-        ArrayList<Subtask> subtasksByEpic = taskManager.getSubtaskListByEpic(epic1);
-        System.out.println(subtasksByEpic);
-
-//      Удаление всех задач
-//        taskManager.deleteAllTasks();
-//        taskManager.deleteAllSubtask();
-//        taskManager.deleteAllEpics();
-
-
-//        System.out.println(taskManager.getSubtasks());
-//        System.out.println(taskManager.getEpics());
-//        System.out.println(taskManager.getTasks());
         taskManager.getEpicByID(epic2.getUniqueID());
         taskManager.getEpicByID(epic2.getUniqueID());
         taskManager.getSubtaskByID(subtask1.getUniqueID());
         List<Task> h = taskManager.getHistory();
 
-
-
         System.out.println(h);
         System.out.println(h);
-
-
-
 
     }
 }
