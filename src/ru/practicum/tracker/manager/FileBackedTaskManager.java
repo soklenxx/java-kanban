@@ -23,8 +23,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         this.file = file;
     }
 
-    public static FileBackedTaskManager loadFromFile() {
-        FileBackedTaskManager fileBackedTaskManager = new FileBackedTaskManager(Path.of(PATH_TO_FILE));
+    public static FileBackedTaskManager loadFromFile(Path file) {
+        FileBackedTaskManager fileBackedTaskManager = new FileBackedTaskManager(file);
         try {
             List<String> lines = Files.readAllLines(Path.of(PATH_TO_FILE));
             int maxId = 0;

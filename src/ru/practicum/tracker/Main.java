@@ -51,25 +51,17 @@ public class Main {
         Subtask subtask4 = new Subtask("Подзадача 2-2", "Description 2", TaskState.NEW, epic2.getUniqueID());
         fileBackedTaskManager.createSubtask(subtask4);
 
-        fileBackedTaskManager.loadFromFile();
-        System.out.println(fileBackedTaskManager.getTasks());
-        System.out.println(fileBackedTaskManager.getEpics());
-        System.out.println(fileBackedTaskManager.getSubtasks());
+        FileBackedTaskManager fileBackedTaskManager2 = new FileBackedTaskManager(path);
+
+        fileBackedTaskManager2.loadFromFile(path);
+        System.out.println(fileBackedTaskManager2.getTasks());
+        System.out.println(fileBackedTaskManager2.getEpics());
+        System.out.println(fileBackedTaskManager2.getSubtasks());
 
         System.out.println("\n");
         System.out.println("\n");
         System.out.println("\n");
         System.out.println("\n");
-
-
-
-
-
-
-
-
-
-
 
 //      Вывод всех задач
         System.out.println(taskManager.getSubtasks());
