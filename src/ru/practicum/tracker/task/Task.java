@@ -1,6 +1,7 @@
 package ru.practicum.tracker.task;
 
 import java.util.Objects;
+
 public class Task {
     private Integer uniqueID;
     private String name;
@@ -38,13 +39,9 @@ public class Task {
         this.uniqueID = uniqueID;
     }
 
-    public TaskState getStatus() {
-        return status;
-    }
+    public TaskState getStatus() { return status; }
 
-    public void setStatus(TaskState status) {
-        this.status = status;
-    }
+    public void setStatus(TaskState status) { this.status = status; }
 
     public TaskType getType() { return type; }
 
@@ -56,12 +53,14 @@ public class Task {
 
     @Override
     public String toString() {
+
         return "Task{" +
                 "uniqueID=" + uniqueID +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status=" + status +
                 '}';
+
     }
 
     @Override
