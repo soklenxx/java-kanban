@@ -36,17 +36,25 @@ public class Task {
     }
 
     public void setUniqueID(Integer uniqueID) {
+
         this.uniqueID = uniqueID;
+
     }
 
     public TaskState getStatus() { return status; }
 
-    public void setStatus(TaskState status) { this.status = status; }
+    public void setStatus(TaskState status) {
+
+        this.status = status;
+
+    }
 
     public TaskType getType() { return type; }
 
     public void setType(TaskType type) {
+
         this.type = type;
+
     }
 
     public Integer getEpicId() { return null; }
