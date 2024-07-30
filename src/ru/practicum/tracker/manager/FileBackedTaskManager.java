@@ -7,7 +7,6 @@ import ru.practicum.tracker.task.Subtask;
 import ru.practicum.tracker.task.Task;
 import ru.practicum.tracker.task.TaskType;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,8 +17,7 @@ import java.util.List;
 public class FileBackedTaskManager extends InMemoryTaskManager {
 
     private final static String PATH_TO_FILE = "src/resources/data.csv";
-    private final Path file;
-
+    private Path file;
     public FileBackedTaskManager(Path file) {
         this.file = file;
     }
@@ -130,17 +128,14 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(PATH_TO_FILE))) {
             bw.write(CSVFormatter.getHeader());
             bw.newLine();
-
             for (Task task : getTasks()) {
                 bw.write(CSVFormatter.toString(task));
                 bw.newLine();
             }
-
             for (Epic epic : getEpics()) {
                 bw.write(CSVFormatter.toString(epic));
                 bw.newLine();
             }
-
             for (Subtask subtask : getSubtasks()) {
                 bw.write(CSVFormatter.toString(subtask));
                 bw.newLine();
