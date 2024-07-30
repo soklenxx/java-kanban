@@ -8,6 +8,7 @@ public class ManagerSaveException extends RuntimeException {
     public ManagerSaveException(String msg, Exception e) {
         super(msg, e);
     }
+
     public static ManagerSaveException saveException(Exception e) {
         return new ManagerSaveException(MSG_SAVE, e);
     }
