@@ -1,9 +1,6 @@
 package ru.practicum.tracker;
 
-import ru.practicum.tracker.manager.HistoryManager;
-import ru.practicum.tracker.manager.InMemoryHistoryManager;
-import ru.practicum.tracker.manager.InMemoryTaskManager;
-import ru.practicum.tracker.manager.TaskManager;
+import ru.practicum.tracker.manager.*;
 
 public class Managers {
 

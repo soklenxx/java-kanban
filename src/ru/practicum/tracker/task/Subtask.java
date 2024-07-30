@@ -16,7 +16,8 @@ public class Subtask extends Task {
         this.epicID = epicID;
     }
 
-    public Integer getEpicID() {
+    @Override
+    public Integer getEpicId() {
         return epicID;
     }
 

@@ -1,10 +1,13 @@
 package ru.practicum.tracker;
+import ru.practicum.tracker.manager.FileBackedTaskManager;
 import ru.practicum.tracker.manager.TaskManager;
 import ru.practicum.tracker.task.Epic;
 import ru.practicum.tracker.task.TaskState;
 import ru.practicum.tracker.task.Subtask;
 import ru.practicum.tracker.task.Task;
 
+import java.nio.file.Path;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,35 +19,58 @@ public class Main {
     }
 
     private static void testTasks() {
+        Path path = Path.of("src/resources/data.csv");
         TaskManager taskManager = Managers.getDefault();
+
+        FileBackedTaskManager fileBackedTaskManager = new FileBackedTaskManager(path);
 
         List<Task> tasks = taskManager.getTasks();
         System.out.println(tasks.isEmpty());
 
 //      Создание задач
         Task task1 = new Task("Задача 1", "Description 1", TaskState.NEW);
-        taskManager.createTask(task1);
+        fileBackedTaskManager.createTask(task1);
 
         Task task2 = new Task("Задача 2", "Description 2", TaskState.NEW);
-        taskManager.createTask(task2);
+        fileBackedTaskManager.createTask(task2);
 
         Epic epic1 = new Epic("Эпик 1", "Description 1", TaskState.NEW);
-        taskManager.createEpic(epic1);
+        fileBackedTaskManager.createEpic(epic1);
 
         Epic epic2 = new Epic("Эпик 2", "Description 2", TaskState.NEW);
-        taskManager.createEpic(epic2);
+        fileBackedTaskManager.createEpic(epic2);
 
         Subtask subtask1 = new Subtask("Подзадача 1", "Description 1", TaskState.NEW, epic1.getUniqueID());
-        taskManager.createSubtask(subtask1);
+        fileBackedTaskManager.createSubtask(subtask1);
 
         Subtask subtask2 = new Subtask("Подзадача 2", "Description 2", TaskState.NEW, epic1.getUniqueID());
-        taskManager.createSubtask(subtask2);
+        fileBackedTaskManager.createSubtask(subtask2);
 
         Subtask subtask3 = new Subtask("Подзадача 1-1", "Description 1", TaskState.NEW, epic2.getUniqueID());
-        taskManager.createSubtask(subtask3);
+        fileBackedTaskManager.createSubtask(subtask3);
 
         Subtask subtask4 = new Subtask("Подзадача 2-2", "Description 2", TaskState.NEW, epic2.getUniqueID());
-        taskManager.createSubtask(subtask4);
+        fileBackedTaskManager.createSubtask(subtask4);
+
+        fileBackedTaskManager.loadFromFile();
+        System.out.println(fileBackedTaskManager.getTasks());
+        System.out.println(fileBackedTaskManager.getEpics());
+        System.out.println(fileBackedTaskManager.getSubtasks());
+
+        System.out.println("\n");
+        System.out.println("\n");
+        System.out.println("\n");
+        System.out.println("\n");
+
+
+
+
+
+
+
+
+
+
 
 //      Вывод всех задач
         System.out.println(taskManager.getSubtasks());
@@ -68,15 +94,9 @@ public class Main {
         System.out.println();
         System.out.println(taskManager.getTaskByID(task1.getUniqueID()));
 
-//      Удаление задач
-        taskManager.deleteTask(task1.getUniqueID());
-        taskManager.deleteEpic(epic2.getUniqueID());
-        System.out.println(taskManager.getEpicByID(epic2.getUniqueID()));
-        System.out.println(taskManager.getTaskByID(task1.getUniqueID()));
-        System.out.println(taskManager.getSubtaskByID(subtask4.getUniqueID()));
-
 //      Получение списка подзадач епика
-        ArrayList<Subtask> subtasksByEpic = taskManager.getSubtaskListByEpic(epic1);
+        ArrayList<Subtask> subtasksByEpic = fileBackedTaskManager.getSubtaskListByEpic(epic1);
+        System.out.println("Получение списка подзадач епика");
         System.out.println(subtasksByEpic);
 
 //      Удаление всех задач
