@@ -1,7 +1,7 @@
 package ru.practicum.tracker.manager;
 
 import ru.practicum.tracker.CSVFormatter;
-import ru.practicum.tracker.ManagerSaveExcepption;
+import ru.practicum.tracker.ManagerSaveException;
 import ru.practicum.tracker.task.Epic;
 import ru.practicum.tracker.task.Subtask;
 import ru.practicum.tracker.task.Task;
@@ -43,7 +43,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
             }
             fileBackedTaskManager.setGeneratorId(maxId);
         } catch (IOException e) {
-            throw ManagerSaveExcepption.loadExcepption(e);
+            throw ManagerSaveException.loadException(e);
         }
         return fileBackedTaskManager;
     }
@@ -143,7 +143,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                 bw.newLine();
             }
         } catch (IOException e) {
-            throw ManagerSaveExcepption.saveExcepption(e);
+            throw ManagerSaveException.saveException(e);
         }
 
     }
