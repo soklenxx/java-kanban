@@ -147,4 +147,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         }
 
     }
+
+    public Path getFile() {
+        return file;
+    }
 }
