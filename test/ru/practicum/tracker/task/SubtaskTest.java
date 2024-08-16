@@ -13,7 +13,7 @@ class SubtaskTest {
     TaskManager taskManager = Managers.getDefault();
     @Test
     public void crateEpic() {
-        epic1 = new Epic("Эпик 1", "Description 1", TaskState.NEW);
+        epic1 = new Epic(1,"Эпик 1", "Description 1", TaskState.NEW);
         taskManager.createEpic(epic1);
         subtask1 = new Subtask("Подзадача 1", "Description 1", TaskState.NEW, 0);
         taskManager.createEpic(epic1);

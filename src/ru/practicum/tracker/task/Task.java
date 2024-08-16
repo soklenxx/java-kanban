@@ -1,11 +1,13 @@
 package ru.practicum.tracker.task;
 
 import java.util.Objects;
+
 public class Task {
     private Integer uniqueID;
     private String name;
     private String description;
     private TaskState status;
+    private TaskType type;
 
 
     public Task(String name, String description, TaskState status) {
@@ -43,6 +45,18 @@ public class Task {
 
     public void setStatus(TaskState status) {
         this.status = status;
+    }
+
+    public TaskType getType() {
+        return type;
+    }
+
+    public void setType(TaskType type) {
+        this.type = type;
+    }
+
+    public Integer getEpicId() {
+        return null;
     }
 
     @Override
