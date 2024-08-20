@@ -1,10 +1,12 @@
 package ru.practicum.tracker.task;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Epic extends Task {
     private ArrayList<Integer> subtasksIDs = new ArrayList<>();
+    private LocalDateTime endTime;
 
     public Epic(String name, String description, TaskState status) {
         super(name, description, status);
@@ -12,6 +14,16 @@ public class Epic extends Task {
 
     public Epic(Integer uniqueID, String name, String description, TaskState status) {
         super(uniqueID, name, description, status);
+    }
+
+    public Epic(Integer uniqueID, String name, String description, TaskState status, int duration, LocalDateTime startTime) {
+        super(uniqueID, name, description, status, duration, startTime);
+        this.endTime = getEndTime();
+    }
+
+    public Epic(String name, String description, TaskState status, int duration, LocalDateTime startTime) {
+        super(name, description, status, duration, startTime);
+        this.endTime = getEndTime();
     }
 
     public ArrayList<Integer> getSubtasksID() {
@@ -25,6 +37,11 @@ public class Epic extends Task {
     public void clearSubtaskIDs() {
         subtasksIDs.clear();
     }
+
+    public void setEndTime(LocalDateTime endTime){ this.endTime = endTime; }
+
+    @Override
+    public LocalDateTime getEndTime(){ return this.getStartTime().plusMinutes(getDuration()); }
 
     @Override
     public boolean equals(Object o) {

@@ -51,7 +51,7 @@ public class Main {
         Subtask subtask4 = new Subtask("Подзадача 2-2", "Description 2", TaskState.NEW, epic2.getUniqueID());
         fileBackedTaskManager.createSubtask(subtask4);
 
-        FileBackedTaskManager fileBackedTaskManager2 = fileBackedTaskManager.loadFromFile(path);
+        FileBackedTaskManager fileBackedTaskManager2 = FileBackedTaskManager.loadFromFile(path);
 
 
         System.out.println(fileBackedTaskManager2.getTasks());
@@ -86,7 +86,7 @@ public class Main {
         System.out.println(taskManager.getTaskByID(task1.getUniqueID()));
 
 //      Получение списка подзадач епика
-        ArrayList<Subtask> subtasksByEpic = fileBackedTaskManager.getSubtaskListByEpic(epic1);
+        List<Subtask> subtasksByEpic = fileBackedTaskManager.getSubtaskListByEpic(epic1);
         System.out.println("Получение списка подзадач епика");
         System.out.println(subtasksByEpic);
 
