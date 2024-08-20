@@ -49,7 +49,7 @@ public interface TaskManager {
 
     void findDurationAndStartTimeOfEpic(Epic epic);
 
-    void validation (Task task);
+    void validation(Task task);
 
-    boolean validationCheck (Task task);
+    boolean validationCheck(Task task);
 }
