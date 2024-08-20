@@ -38,10 +38,14 @@ public class Epic extends Task {
         subtasksIDs.clear();
     }
 
-    public void setEndTime(LocalDateTime endTime){ this.endTime = endTime; }
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
 
     @Override
-    public LocalDateTime getEndTime(){ return this.getStartTime().plusMinutes(getDuration()); }
+    public LocalDateTime getEndTime() {
+        return this.getStartTime().plusMinutes(getDuration());
+    }
 
     @Override
     public boolean equals(Object o) {
