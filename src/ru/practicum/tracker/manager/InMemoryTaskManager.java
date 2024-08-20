@@ -199,7 +199,7 @@ public class InMemoryTaskManager implements TaskManager {
         LocalDateTime startTime = null;
         int duration = 0;
 
-        for(int id : subTaskIds){
+        for (int id : subTaskIds) {
             Subtask subTask = subtasks.get(id);
             if (subTask.getStartTime() != null) {
                 if (startTime == null || startTime.isAfter(subTask.getStartTime())) {
@@ -224,7 +224,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public void validation (Task task) {
+    public void validation(Task task) {
         boolean taskHasIntersections = validationCheck(task);
         if (!taskHasIntersections) {
             System.out.println(task.getStartTime());
@@ -233,7 +233,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public boolean validationCheck (Task task) {
+    public boolean validationCheck(Task task) {
         for (Task taskCheck : prioritizedTasks) {
             if (taskCheck.getStartTime() != null && taskCheck.getEndTime() != null) {
                 if (
