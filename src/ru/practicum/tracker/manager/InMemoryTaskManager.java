@@ -196,12 +196,12 @@ public class InMemoryTaskManager implements TaskManager {
         LocalDateTime startTime = epic.getSubtasksID().stream()
                 .map(subtasks::get)
                 .map(Task::getStartTime)
-                .reduce(null, (min, start) -> ((min == null) || ( min.isAfter(start)) ? start : min));
+                .reduce(null, (min, start) -> ((min == null) || (min.isAfter(start)) ? start : min));
 
         LocalDateTime endTime = epic.getSubtasksID().stream()
                 .map(subtasks::get)
                 .map(Task::getEndTime)
-                .reduce(null, (max, end) -> ((max == null) || ( max.isBefore(end)) ? end : max));
+                .reduce(null, (max, end) -> ((max == null) || (max.isBefore(end)) ? end : max));
 
         int duration = epic.getSubtasksID().stream()
                 .map(subtasks::get)
