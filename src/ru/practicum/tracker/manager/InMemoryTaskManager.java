@@ -193,34 +193,24 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void findDurationAndStartTimeOfEpic(Epic epic) {
-        List<Integer> subTaskIds = epic.getSubtasksID();
+        LocalDateTime startTime = epic.getSubtasksID().stream()
+                .map(subtasks::get)
+                .map(Task::getStartTime)
+                .reduce(null, (min, start) -> ((min == null) || ( min.isAfter(start)) ? start : min));
 
-        LocalDateTime endTime = null;
-        LocalDateTime startTime = null;
-        int duration = 0;
+        LocalDateTime endTime = epic.getSubtasksID().stream()
+                .map(subtasks::get)
+                .map(Task::getEndTime)
+                .reduce(null, (max, end) -> ((max == null) || ( max.isBefore(end)) ? end : max));
 
-        for (int id : subTaskIds) {
-            Subtask subTask = subtasks.get(id);
-            if (subTask.getStartTime() != null) {
-                if (startTime == null || startTime.isAfter(subTask.getStartTime())) {
-                    startTime = subTask.getStartTime();
-                }
-            } else {
-                System.out.println("Subtask start time equals null.");
-            }
-            if (subTask.getEndTime() != null) {
-                if (endTime == null || endTime.isBefore(subTask.getEndTime())) {
-                    endTime = subTask.getEndTime();
-                }
-            } else {
-                System.out.println("Subtask end time equals null.");
-            }
-            duration += subTask.getDuration();
-        }
+        int duration = epic.getSubtasksID().stream()
+                .map(subtasks::get)
+                .mapToInt(Task::getDuration)
+                .sum();
+
         epic.setStartTime(startTime);
         epic.setEndTime(endTime);
         epic.setDuration(duration);
-
     }
 
     @Override
