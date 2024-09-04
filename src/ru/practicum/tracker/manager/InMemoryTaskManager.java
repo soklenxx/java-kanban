@@ -1,6 +1,7 @@
 package ru.practicum.tracker.manager;
 
 import ru.practicum.tracker.Managers;
+import ru.practicum.tracker.manager.exception.TaskTimeException;
 import ru.practicum.tracker.task.*;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,10 @@ public class InMemoryTaskManager implements TaskManager {
     private final HistoryManager historyManager = Managers.getDefaultHistory();
     final Set<Task> prioritizedTasks = new TreeSet<>(Comparator.comparing(Task::getStartTime,
             Comparator.nullsLast(Comparator.naturalOrder())).thenComparing(Task::getUniqueID));
+
+    public Set<Task> getPrioritizedTasks() {
+        return prioritizedTasks;
+    }
 
     @Override
     public Task createTask(Task task) {
@@ -218,7 +223,7 @@ public class InMemoryTaskManager implements TaskManager {
         boolean taskHasIntersections = validationCheck(task);
         if (!taskHasIntersections) {
             System.out.println(task.getStartTime());
-            throw new RuntimeException("Задача пересекается с уже существующей");
+            throw new TaskTimeException("Задача пересекается с уже существующей");
         }
     }
 
