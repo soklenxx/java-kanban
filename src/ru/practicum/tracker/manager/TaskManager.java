@@ -5,8 +5,11 @@ import ru.practicum.tracker.task.Subtask;
 import ru.practicum.tracker.task.Task;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TaskManager {
+    Set<Task> getPrioritizedTasks();
+
     Task createTask(Task task);
 
     Task updateTask(Task task);
