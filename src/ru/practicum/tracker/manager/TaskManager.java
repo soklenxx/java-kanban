@@ -4,7 +4,6 @@ import ru.practicum.tracker.task.Epic;
 import ru.practicum.tracker.task.Subtask;
 import ru.practicum.tracker.task.Task;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface TaskManager {
@@ -46,5 +45,11 @@ public interface TaskManager {
 
     List<Task> getHistory();
 
-    ArrayList<Subtask> getSubtaskListByEpic(Epic epic);
+    List<Subtask> getSubtaskListByEpic(Epic epic);
+
+    void findDurationAndStartTimeOfEpic(Epic epic);
+
+    void validation(Task task);
+
+    boolean validationCheck(Task task);
 }

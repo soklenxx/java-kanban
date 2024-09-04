@@ -8,6 +8,8 @@ import ru.practicum.tracker.task.Subtask;
 import ru.practicum.tracker.task.Task;
 import ru.practicum.tracker.task.TaskState;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryTaskManagerTest {
@@ -21,13 +23,13 @@ class InMemoryTaskManagerTest {
 
     @BeforeEach
     void beforeEach() {
-        task1 = new Task(0,"Задача 1", "Description 1", TaskState.NEW);
-        task2 = new Task(0,"Задача 3", "Description 3", TaskState.NEW);
+        task1 = new Task(0,"Задача 1", "Description 1", TaskState.NEW, 20, LocalDateTime.now());
+        task2 = new Task(0,"Задача 3", "Description 3", TaskState.NEW, 20, LocalDateTime.now().plusMinutes(222));
 
-        epic1 = new Epic(3,"Эпик 1", "Description 1", TaskState.NEW);
-        epic2 = new Epic(3,"Эпик 3", "Description 3", TaskState.NEW);
+        epic1 = new Epic(3,"Эпик 1", "Description 1", TaskState.NEW, 20, LocalDateTime.now().plusMinutes(333));
+        epic2 = new Epic(3,"Эпик 3", "Description 3", TaskState.NEW, 20, LocalDateTime.now().plusMinutes(444));
 
-        subtask1 = new Subtask(0,"Сабтаск 1", "Description 3", TaskState.NEW, 3);
+        subtask1 = new Subtask(0,"Сабтаск 1", "Description 3", TaskState.NEW, 3, 20, LocalDateTime.now().plusMinutes(555));
     }
     @Test
     public void shouldReturnEqualsTasks() {
@@ -61,7 +63,7 @@ class InMemoryTaskManagerTest {
     @Test
     public void tasksWithGivenIdAndGeneratedIdDoNotConflictWithinManager() {
         TaskManager taskManagerExpected = Managers.getDefault();
-        Subtask subtask2 = new Subtask("Сабтаск 1", "Description 3", TaskState.NEW, 3);
+        Subtask subtask2 = new Subtask("Сабтаск 1", "Description 3", TaskState.NEW, 3, 20, LocalDateTime.now().plusMinutes(777));
         taskManagerExpected.createSubtask(subtask2);
         assertEquals(taskManagerExpected.getSubtaskByID(0), subtask1);
     }
@@ -69,7 +71,7 @@ class InMemoryTaskManagerTest {
     @Test
     public void taskRemainsUnchangedWhenAddingTaskToManager() {
         taskManager.createTask(task1);
-        assertEquals(taskManager.getTaskByID(0), new Task(0,"Задача 1", "Description 1", TaskState.NEW));
+        assertEquals(taskManager.getTaskByID(0), new Task(0,"Задача 1", "Description 1", TaskState.NEW, 20, LocalDateTime.now()));
     }
 
     @Test

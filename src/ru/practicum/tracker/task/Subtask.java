@@ -1,6 +1,7 @@
 package ru.practicum.tracker.task;
 
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Subtask extends Task {
@@ -13,6 +14,16 @@ public class Subtask extends Task {
 
     public Subtask(Integer uniqueID, String name, String description, TaskState status, Integer epicID) {
         super(uniqueID, name, description, status);
+        this.epicID = epicID;
+    }
+
+    public Subtask(Integer uniqueID, String name, String description, TaskState status, Integer epicID, int duration, LocalDateTime startTime) {
+        super(uniqueID, name, description, status, duration, startTime);
+        this.epicID = epicID;
+    }
+
+    public Subtask(String name, String description, TaskState status, Integer epicID, int duration, LocalDateTime startTime) {
+        super(name, description, status, duration, startTime);
         this.epicID = epicID;
     }
 

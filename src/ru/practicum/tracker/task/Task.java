@@ -1,5 +1,7 @@
 package ru.practicum.tracker.task;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Task {
@@ -8,6 +10,8 @@ public class Task {
     private String description;
     private TaskState status;
     private TaskType type;
+    private int duration;
+    private LocalDateTime startTime;
 
 
     public Task(String name, String description, TaskState status) {
@@ -21,6 +25,46 @@ public class Task {
         this.name = name;
         this.description = description;
         this.status = status;
+    }
+
+    public Task(Integer uniqueID, String name, String description, TaskState status, int duration, LocalDateTime startTime) {
+        this.uniqueID = uniqueID;
+        this.name = name;
+        this.description = description;
+        this.status = status;
+        this.duration = duration;
+        this.startTime = startTime;
+    }
+
+    public Task(String name, String description, TaskState status, int duration, LocalDateTime startTime) {
+        this.name = name;
+        this.description = description;
+        this.status = status;
+        this.duration = duration;
+        this.startTime = startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        if (startTime != null) {
+            return startTime.plus(Duration.ofMinutes(duration));
+        }
+        return LocalDateTime.MAX;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
     }
 
     public String getName() {
@@ -58,6 +102,7 @@ public class Task {
     public Integer getEpicId() {
         return null;
     }
+
 
     @Override
     public String toString() {
