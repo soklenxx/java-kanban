@@ -1,6 +1,5 @@
 package ru.practicum.tracker.http.handler;
 
-import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import ru.practicum.tracker.http.HttpTaskServer;
 import ru.practicum.tracker.manager.TaskManager;
@@ -11,7 +10,6 @@ import ru.practicum.tracker.task.Subtask;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.util.List;
 
 public class EpicsHttpHandler extends BaseHttpHandler {
@@ -25,7 +23,6 @@ public class EpicsHttpHandler extends BaseHttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         String path = exchange.getRequestURI().getPath();
         Integer id = getIdFromPath(path);
-        Gson gson = new Gson();
         String[] splitPath = path.split("/");
 
         switch (exchange.getRequestMethod()) {
@@ -57,7 +54,7 @@ public class EpicsHttpHandler extends BaseHttpHandler {
                 if (id == null) {
                     InputStream inputStream = exchange.getRequestBody();
                     String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-                    Epic epic = gson.fromJson(body, Epic.class);
+                    Epic epic = HttpTaskServer.getGson().fromJson(body, Epic.class);
                     try {
                         TaskManager.createEpic(epic);
                         Integer ids = epic.getUniqueID();
@@ -69,7 +66,7 @@ public class EpicsHttpHandler extends BaseHttpHandler {
                 } else {
                     InputStream inputStream = exchange.getRequestBody();
                     String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-                    Epic epic = gson.fromJson(body, Epic.class);
+                    Epic epic = HttpTaskServer.getGson().fromJson(body, Epic.class);
                     try {
                         TaskManager.updateEpic(epic);
                         String response = "Задача с id=" + id + " обновлена";

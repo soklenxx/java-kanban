@@ -27,7 +27,6 @@ public class TasksHttpHandler extends BaseHttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         Integer id = getIdFromPath(exchange.getRequestURI().getPath());
-        Gson gson = new Gson();
 
         switch (exchange.getRequestMethod()) {
             case "GET":
@@ -49,7 +48,7 @@ public class TasksHttpHandler extends BaseHttpHandler {
                 if (id==null) {
                     InputStream inputStream = exchange.getRequestBody();
                     String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-                    Task task = gson.fromJson(body, Task.class);
+                    Task task = HttpTaskServer.getGson().fromJson(body, Task.class);
                     try {
                         taskManager.createTask(task);
                         Integer ids = task.getUniqueID();
@@ -61,7 +60,7 @@ public class TasksHttpHandler extends BaseHttpHandler {
                 } else {
                     InputStream inputStream = exchange.getRequestBody();
                     String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-                    Task task = gson.fromJson(body, Task.class);
+                    Task task = HttpTaskServer.getGson().fromJson(body, Task.class);
                     try {
                         taskManager.updateTask(task);
                         String response = "Задача с id=" + id + " обновлена";

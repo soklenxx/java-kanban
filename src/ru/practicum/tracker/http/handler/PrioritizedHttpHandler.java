@@ -2,12 +2,10 @@ package ru.practicum.tracker.http.handler;
 
 import com.sun.net.httpserver.HttpExchange;
 import ru.practicum.tracker.http.HttpTaskServer;
-import ru.practicum.tracker.manager.HistoryManager;
 import ru.practicum.tracker.manager.TaskManager;
 import ru.practicum.tracker.task.Task;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 public class PrioritizedHttpHandler extends BaseHttpHandler {

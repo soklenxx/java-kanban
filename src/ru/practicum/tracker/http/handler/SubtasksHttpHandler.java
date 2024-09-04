@@ -25,7 +25,6 @@ public class SubtasksHttpHandler extends BaseHttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         Integer id = getIdFromPath(exchange.getRequestURI().getPath());
-        Gson gson = new Gson();
 
         switch (exchange.getRequestMethod()) {
             case "GET":
@@ -47,7 +46,7 @@ public class SubtasksHttpHandler extends BaseHttpHandler {
                 if (id==null) {
                     InputStream inputStream = exchange.getRequestBody();
                     String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-                    Subtask subtask = gson.fromJson(body, Subtask.class);
+                    Subtask subtask = HttpTaskServer.getGson().fromJson(body, Subtask.class);
                     try {
                         taskManager.createSubtask(subtask);
                         Integer ids = subtask.getUniqueID();
@@ -59,7 +58,7 @@ public class SubtasksHttpHandler extends BaseHttpHandler {
                 } else {
                     InputStream inputStream = exchange.getRequestBody();
                     String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-                    Subtask subtask = gson.fromJson(body, Subtask.class);
+                    Subtask subtask = HttpTaskServer.getGson().fromJson(body, Subtask.class);
                     try {
                         taskManager.updateSubtask(subtask);
                         String response = "Задача с id=" + id + " обновлена";
