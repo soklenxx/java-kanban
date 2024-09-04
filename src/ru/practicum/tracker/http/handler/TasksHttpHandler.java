@@ -1,6 +1,5 @@
 package ru.practicum.tracker.http.handler;
 
-import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import ru.practicum.tracker.http.HttpTaskServer;
 import ru.practicum.tracker.manager.TaskManager;
@@ -30,7 +29,7 @@ public class TasksHttpHandler extends BaseHttpHandler {
 
         switch (exchange.getRequestMethod()) {
             case "GET":
-                if (id==null) {
+                if (id == null) {
                     List<Task> tasks = taskManager.getTasks();
                     String response = HttpTaskServer.getGson().toJson(tasks);
                     sendText(exchange, response, 200);
@@ -45,7 +44,7 @@ public class TasksHttpHandler extends BaseHttpHandler {
                 }
                 break;
             case "POST":
-                if (id==null) {
+                if (id == null) {
                     InputStream inputStream = exchange.getRequestBody();
                     String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
                     Task task = HttpTaskServer.getGson().fromJson(body, Task.class);
@@ -71,7 +70,7 @@ public class TasksHttpHandler extends BaseHttpHandler {
                 }
                 break;
             case "DELETE":
-                if (id==null) {
+                if (id == null) {
                     taskManager.deleteAllTasks();
                     String response = HttpTaskServer.getGson().toJson("Задачи удалены");
                     sendText(exchange, response, 200);

@@ -1,13 +1,10 @@
 package ru.practicum.tracker.http.handler;
 
-import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import ru.practicum.tracker.http.HttpTaskServer;
 import ru.practicum.tracker.manager.TaskManager;
 import ru.practicum.tracker.manager.exception.TaskTimeException;
-import ru.practicum.tracker.task.Epic;
 import ru.practicum.tracker.task.Subtask;
-import ru.practicum.tracker.task.Task;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +25,7 @@ public class SubtasksHttpHandler extends BaseHttpHandler {
 
         switch (exchange.getRequestMethod()) {
             case "GET":
-                if (id==null) {
+                if (id == null) {
                     List<Subtask> subtasks = taskManager.getSubtasks();
                     String response = HttpTaskServer.getGson().toJson(subtasks);
                     sendText(exchange, response, 200);
@@ -43,7 +40,7 @@ public class SubtasksHttpHandler extends BaseHttpHandler {
                 }
                 break;
             case "POST":
-                if (id==null) {
+                if (id == null) {
                     InputStream inputStream = exchange.getRequestBody();
                     String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
                     Subtask subtask = HttpTaskServer.getGson().fromJson(body, Subtask.class);
@@ -69,7 +66,7 @@ public class SubtasksHttpHandler extends BaseHttpHandler {
                 }
                 break;
             case "DELETE":
-                if (id==null) {
+                if (id == null) {
                     taskManager.deleteAllSubtask();
                     String response = HttpTaskServer.getGson().toJson("Задачи удалены");
                     sendText(exchange, response, 200);

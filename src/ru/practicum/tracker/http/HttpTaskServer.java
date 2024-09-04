@@ -2,16 +2,13 @@ package ru.practicum.tracker.http;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.TypeAdapter;
 import com.sun.net.httpserver.HttpServer;
 import ru.practicum.tracker.Managers;
 import ru.practicum.tracker.http.adapter.LocalDateTimeAdapter;
 import ru.practicum.tracker.http.handler.*;
-import ru.practicum.tracker.manager.HistoryManager;
 import ru.practicum.tracker.manager.TaskManager;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.InetSocketAddress;
 import java.time.LocalDateTime;
 
