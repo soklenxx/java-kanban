@@ -14,10 +14,10 @@ import java.util.List;
 
 public class EpicsHttpHandler extends BaseHttpHandler {
 
-    private final TaskManager TaskManager;
+    private final TaskManager taskManager;
 
-    public EpicsHttpHandler(TaskManager TaskManager) {
-        this.TaskManager = TaskManager;
+    public EpicsHttpHandler(TaskManager taskManager) {
+        this.taskManager = taskManager;
     }
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -28,12 +28,12 @@ public class EpicsHttpHandler extends BaseHttpHandler {
         switch (exchange.getRequestMethod()) {
             case "GET":
                 if (id == null) {
-                    List<Epic> epics = TaskManager.getEpics();
+                    List<Epic> epics = taskManager.getEpics();
                     String response = HttpTaskServer.getGson().toJson(epics);
                     sendText(exchange, response, 200);
                 } else if (splitPath.length >= 4) {
-                    Epic epic = TaskManager.getEpicByID(id);
-                    List<Subtask> epicSubtasks = TaskManager.getSubtaskListByEpic(epic);
+                    Epic epic = taskManager.getEpicByID(id);
+                    List<Subtask> epicSubtasks = taskManager.getSubtaskListByEpic(epic);
                     if (epic == null) {
                         sendText(exchange, "Задача с id=" + id + " не существует", 404);
                     } else {
@@ -41,7 +41,7 @@ public class EpicsHttpHandler extends BaseHttpHandler {
                         sendText(exchange, response, 200);
                     }
                 } else {
-                    Epic epic = TaskManager.getEpicByID(id);
+                    Epic epic = taskManager.getEpicByID(id);
                     if (epic == null) {
                         sendText(exchange, "Задача с id=" + id + " не существует", 404);
                     } else {
@@ -56,7 +56,7 @@ public class EpicsHttpHandler extends BaseHttpHandler {
                     String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
                     Epic epic = HttpTaskServer.getGson().fromJson(body, Epic.class);
                     try {
-                        TaskManager.createEpic(epic);
+                        taskManager.createEpic(epic);
                         Integer ids = epic.getUniqueID();
                         String response = "Задача с id=" + ids + " создана";
                         sendText(exchange, response, 201);
@@ -68,7 +68,7 @@ public class EpicsHttpHandler extends BaseHttpHandler {
                     String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
                     Epic epic = HttpTaskServer.getGson().fromJson(body, Epic.class);
                     try {
-                        TaskManager.updateEpic(epic);
+                        taskManager.updateEpic(epic);
                         String response = "Задача с id=" + id + " обновлена";
                         sendText(exchange, response, 201);
                     } catch (TaskTimeException e) {
@@ -78,11 +78,11 @@ public class EpicsHttpHandler extends BaseHttpHandler {
                 break;
             case "DELETE":
                 if (id == null) {
-                    TaskManager.deleteAllEpics();
+                    taskManager.deleteAllEpics();
                     String response = HttpTaskServer.getGson().toJson("Задачи удалены");
                     sendText(exchange, response, 200);
                 } else {
-                    TaskManager.deleteEpic(id);
+                    taskManager.deleteEpic(id);
                     String response = HttpTaskServer.getGson().toJson("Задача удалена");
                     sendText(exchange, response, 200);
                 }
